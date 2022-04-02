@@ -7,7 +7,6 @@ import styles from '../styles/Home.module.css';
 import Navbar from '../components/Navbar';
 import { CardList } from '../components/Cards';
 import Pagination from '../components/Pagination';
-import PageNav from '../components/PageNav';
 
 export default function MyPokemon() {
 	return (
@@ -52,7 +51,6 @@ export default function MyPokemon() {
 				<Pagination />
 			</main>
 
-			<PageNav />
 			<footer className={styles.footer}>
 				<a
 					href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'

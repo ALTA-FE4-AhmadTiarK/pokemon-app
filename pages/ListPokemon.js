@@ -5,7 +5,6 @@ import styles from '../styles/Home.module.css';
 import { CardList } from '../components/Cards';
 import Navbar from '../components/Navbar';
 import Pagination from '../components/Pagination';
-import PageNav from '../components/PageNav';
 
 export default function ListPokemon() {
 	return (
@@ -27,7 +26,6 @@ export default function ListPokemon() {
 				<Pagination />
 			</main>
 
-			<PageNav />
 			<footer className={styles.footer}>
 				<h6 className='fw-bold'>Created by Ahmad Tiar K.</h6>
 			</footer>

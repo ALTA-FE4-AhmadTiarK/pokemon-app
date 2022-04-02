@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
-import PageNav from '../components/PageNav';
 import { CardBox, CardMoves, Pokeball } from '../components/Cards';
 
 export default function Details() {
@@ -31,7 +30,6 @@ export default function Details() {
 				<Pokeball />
 			</main>
 
-			<PageNav />
 
 			<footer className={styles.footer}>
 				<a
