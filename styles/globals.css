@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+hr{
+  margin: 0;
+  height:2px;
+  opacity:1;
+}
