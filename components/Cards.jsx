@@ -75,8 +75,8 @@ const Pokeball = () => {
 					height={80}
 				/>
 				<p
-					className='rounded-pill border mx-auto w-50 my-4'
-					style={{ backgroundColor: 'antiquewhite' }}>
+					className='rounded-pill border mx-auto w-50 my-4 text-white fw-bold'
+					style={{ backgroundColor: '#F25430' }}>
 					Catch <br /> Pokemon
 				</p>
 			</a>
