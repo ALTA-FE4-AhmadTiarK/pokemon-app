@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
-import { CardList } from '../components/Cards';
 import Header from '../components/Header';
-import Navbar from '../components/Navbar';
-import Pagination from '../components/Pagination';
 import styles from '../styles/Home.module.css';
+
+// Chosen Components:
+import Navbar from '../components/Navbar';
+import { CardList } from '../components/Cards';
+import Pagination from '../components/Pagination';
 import PageNav from '../components/PageNav';
 
 export default function MyPokemon() {
@@ -24,6 +25,21 @@ export default function MyPokemon() {
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title='My Pokemon List' />
 				<CardList
+					name='Pikachu'
+					type='Electric'
+					setName='Budi'
+					box={
+						<Image
+							src='/trash.svg'
+							alt='trash'
+							width={30}
+							height={30}></Image>
+					}
+				/>
+				<CardList
+					name='Raikou'
+					type='Electric'
+					setName='Rudy'
 					box={
 						<Image
 							src='/trash.svg'

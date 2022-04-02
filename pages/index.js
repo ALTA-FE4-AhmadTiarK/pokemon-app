@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 
 export default function Home() {
 	return (
-		<div className={styles.container}>
+		<div style={{ backgroundColor: '#F25430' }}>
 			<Head>
 				<title>Home</title>
 				<meta
@@ -20,50 +20,23 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.main}>
-				<h1 className={styles.title}>Welcome to Pokemon World!</h1>
+				<div className='text-center'>
+					<Image
+						src='/Pokemon.svg'
+						alt='Pokemon-logo'
+						width={200}
+						height={100}
+					/>
 
-				<div className={styles.grid}>
-					<a href='#'>
-						<Link href='/Details'>
-							{/* <div className={Pokemon.listcard}> */}
-							<h2>Go to Details</h2>
-							{/* </div> */}
-						</Link>
-					</a>
+					<h2 className='text-white'>Mini Games</h2>
 
 					<a href='#'>
-						<Link href='/ListPokemon'>
-							<div className='card bg-danger'>
-								<h2>Go to List Pokemon</h2>
-							</div>
-						</Link>
-					</a>
-					<a href='#'>
-						<Link href='/MyPokemon'>
-							<div className={styles.card}>
-								<h2>Go to MyPokemon</h2>
-							</div>
-						</Link>
+						<div className='border border-5 rounded-pill p-2 my-3'>
+							<Link href='/ListPokemon'>Game Start</Link>
+						</div>
 					</a>
 				</div>
 			</main>
-
-			<footer className={styles.footer}>
-				<a
-					href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-					target='_blank'
-					rel='noopener noreferrer'>
-					Powered by{' '}
-					<span className={styles.logo}>
-						<Image
-							src='/vercel.svg'
-							alt='Vercel Logo'
-							width={72}
-							height={16}
-						/>
-					</span>
-				</a>
-			</footer>
 		</div>
 	);
 }
