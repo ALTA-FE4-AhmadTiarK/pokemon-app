@@ -1,16 +1,7 @@
 import { Menu } from '@headlessui/react';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-
-function MyLink(props) {
-	let { href, children, ...rest } = props;
-	return (
-		<Link href={href}>
-			<a {...rest}>{children}</a>
-		</Link>
-	);
-}
+import MyLink from './Link';
 
 export default function Dropdown() {
 	return (
