@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const CardList = ({ name, setName, type, box, onClick }) => {
+const CardList = ({ name, setName, box, onClick }) => {
+	const [typePokemon, setTypePokemon] = useState([]);
+
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -12,25 +14,29 @@ const CardList = ({ name, setName, type, box, onClick }) => {
 		await axios
 			.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
 			.then((response) => {
-				// console.log(response.data.types[0].type.name);
-				console.log(response);
+				setTypePokemon(response.data.types);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
-
 	return (
 		<div
 			className='card-body mx-3 border my-2'
 			style={{ borderRadius: 1 + 'em', backgroundColor: '#F2E750' }}>
 			<div className='row'>
 				<div className='col-9'>
-					<h5 className='card-title display-6 fw-bold'>{name}</h5>
+					<h5 className='card-title display-6 fw-bold text-capitalize'>
+						{name}
+					</h5>
 					<hr />
 					<span className='card-text py-1 fw-bold d-flex justify-content-between'>
 						<p>{setName}</p>
-						<p>{type}</p>
+						<h6 className='fw-bold text-capitalize'>
+							{typePokemon
+								.map((item) => item.type.name)
+								.join(`, `)}
+						</h6>
 					</span>
 				</div>
 				<div className='col-3 my-auto'>

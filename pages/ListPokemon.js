@@ -18,7 +18,7 @@ export default function ListPokemon() {
 		fetchData();
 	}, []);
 
-	const fetchData = async () => {		
+	const fetchData = async () => {
 		await axios
 			.get(`https://pokeapi.co/api/v2/pokemon/`)
 			.then((response) => {
@@ -28,7 +28,7 @@ export default function ListPokemon() {
 				console.log(err);
 			});
 	};
-	
+
 	return (
 		<>
 			<Head>
@@ -41,32 +41,13 @@ export default function ListPokemon() {
 			</Head>
 			<Navbar title='List Pokemon' />
 			<main className='align-items-center justify-content-center container py-4'>
-				
-				<Header title={'List of Pokemon'} />					
+				<Header title={'List of Pokemon'} />
 
 				<div className={styles.link}>
 					{listPokemon.map((item, index) => {
-						return (
-							<CardList key={index} name={item.name}  />
-						);
+						return <CardList key={index} name={item.name} />;
 					})}
 				</div>
-				{/* <div className={styles.link}>
-					<CardList
-						name='Mewtwo'
-						type='Psychic'
-						box='2'
-						cardClick={<Link href='/Details' />}
-					/>
-				</div> */}
-				{/* <div className={styles.link}>
-					<CardList
-						name='Pikachu'
-						type='Electric'
-						box='99'
-						cardClick={<Link href='/Details' />}
-					/>
-				</div> */}
 
 				<Pagination />
 			</main>
