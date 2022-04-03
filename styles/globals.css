@@ -11,6 +11,16 @@ a {
   text-decoration: none;
 }
 
+a:hover{
+  color: #F2E750;
+}
+
 * {
   box-sizing: border-box;
+}
+
+hr{
+  margin: 0;
+  height:2px;
+  opacity:1;
 }
