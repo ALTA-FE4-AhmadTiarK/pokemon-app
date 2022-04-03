@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-
+// Axios
+import React, { useEffect, useState } from 'react';
 // Chosen Components:
 import { CardList } from '../components/Cards';
 import Navbar from '../components/Navbar';
@@ -8,8 +9,26 @@ import Pagination from '../components/Pagination';
 import Link from 'next/link';
 import Header from '../components/Header';
 import MyLink from '../components/Link';
+import axios from 'axios';
 
 export default function ListPokemon() {
+	const [listPokemon, setListPokemon] = useState([]);	
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const fetchData = async () => {		
+		await axios
+			.get(`https://pokeapi.co/api/v2/pokemon/`)
+			.then((response) => {
+				setListPokemon(response.data.results);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+	
 	return (
 		<>
 			<Head>
@@ -22,32 +41,32 @@ export default function ListPokemon() {
 			</Head>
 			<Navbar title='List Pokemon' />
 			<main className='align-items-center justify-content-center container py-4'>
-				<Header title={'List of Pokemon'} />
+				
+				<Header title={'List of Pokemon'} />					
 
 				<div className={styles.link}>
-					<CardList
-						name='Pikachu'
-						type='Electric'
-						box='0'
-						cardClick={<MyLink href='/Details' />}
-					/>
+					{listPokemon.map((item, index) => {
+						return (
+							<CardList key={index} name={item.name}  />
+						);
+					})}
 				</div>
-				<div className={styles.link}>
+				{/* <div className={styles.link}>
 					<CardList
 						name='Mewtwo'
 						type='Psychic'
 						box='2'
 						cardClick={<Link href='/Details' />}
 					/>
-				</div>
-				<div className={styles.link}>
+				</div> */}
+				{/* <div className={styles.link}>
 					<CardList
-						name='Raikou'
+						name='Pikachu'
 						type='Electric'
 						box='99'
 						cardClick={<Link href='/Details' />}
 					/>
-				</div>
+				</div> */}
 
 				<Pagination />
 			</main>

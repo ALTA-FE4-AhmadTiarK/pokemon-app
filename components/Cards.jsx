@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
-const CardList = ({ name, setName, type, box, onClick, cardClick }) => {
+const CardList = ({ name, setName, type, box, onClick }) => {
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const fetchData = async () => {
+		await axios
+			.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+			.then((response) => {
+				// console.log(response.data.types[0].type.name);
+				console.log(response);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	return (
 		<div
 			className='card-body mx-3 border my-2'
@@ -123,7 +140,5 @@ const Pokeball = () => {
 		</div>
 	);
 };
-
-
 
 export { CardList, CardBox, CardMoves, Pokeball };
