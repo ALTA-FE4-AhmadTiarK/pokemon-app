@@ -11,24 +11,68 @@ import Header from '../components/Header';
 import MyLink from '../components/Link';
 import axios from 'axios';
 
-export default function ListPokemon() {
-	const [listPokemon, setListPokemon] = useState([]);	
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
-	const fetchData = async () => {
-		await axios
-			.get(`https://pokeapi.co/api/v2/pokemon/`)
-			.then((response) => {
-				setListPokemon(response.data.results);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+export async function getServerSideProps() {
+	const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
+	const data = await response.json();
+	data.results.forEach((item, index) => {
+		item.id = index + 1;
+	});
+	return {
+		props: { pokemon: data.results, index: 0 },
 	};
+}
 
+export default function ListPokemon({ pokemon, index }) {
+	const [tempPokemon, setTempPokemon] = useState(pokemon);
+	const [tempIndex, setTempIndex] = useState(index);
+	const nextPage = async () => {
+		if (tempIndex == 0) {
+			const res = await fetch(
+				'https://pokeapi.co/api/v2/pokemon?offset=20&limit=20'
+			);
+			const data = await res.json();
+			data.results.forEach((item, index) => {
+				item.id = tempPokemon[tempPokemon.length - 1].id + (index + 1);
+			});
+			setTempPokemon(data.results);
+			setTempIndex(20);
+		} else {
+			let nextIndex = tempIndex + 20;
+			const res = await fetch(
+				`https://pokeapi.co/api/v2/pokemon?offset=${nextIndex}&limit=20`
+			);
+			const data = await res.json();
+			data.results.forEach((item, index) => {
+				item.id = tempPokemon[tempPokemon.length - 1].id + (index + 1);
+			});
+			setTempPokemon(data.results);
+			setTempIndex(nextIndex);
+		}
+	};
+	const prevPage = async () => {
+		if (tempIndex == 20) {
+			const res = await fetch(
+				'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20'
+			);
+			const data = await res.json();
+			data.results.forEach((item, index) => {
+				item.id = index + 1;
+			});
+			setTempPokemon(data.results);
+			setTempIndex(0);
+		} else {
+			let prevIndex = tempIndex - 20;
+			const res = await fetch(
+				`https://pokeapi.co/api/v2/pokemon?offset=${prevIndex}&limit=20`
+			);
+			const data = await res.json();
+			data.results.forEach((item, index) => {
+				item.id = index + 1;
+			});
+			setTempPokemon(data.results);
+			setTempIndex(prevIndex);
+		}
+	};
 	return (
 		<>
 			<Head>
@@ -42,14 +86,16 @@ export default function ListPokemon() {
 			<Navbar title='List Pokemon' />
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title={'List of Pokemon'} />
+				{tempPokemon.map((item) => (
+					<div key={item.id} className='row'>
+						{/* <MyLink href={`/Details/${item.id}`}> */}
+						<CardList name={item.name} />
+						{/* </MyLink> */}
+					</div>
+				))}
 
-				<div className={styles.link}>
-					{listPokemon.map((item, index) => {
-						return <CardList key={index} name={item.name} />;
-					})}
-				</div>
-
-				<Pagination />
+				<button onClick={prevPage}>PREV</button>
+				<button onClick={nextPage}>NEXT</button>
 			</main>
 
 			<footer className={styles.footer}>

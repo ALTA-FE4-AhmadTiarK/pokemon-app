@@ -22,9 +22,9 @@ const CardList = ({ name, setName, box, onClick }) => {
 	};
 	return (
 		<div
-			className='card-body mx-3 border my-2'
+			className='card-body mx-3 border my-2 list-card'
 			style={{ borderRadius: 1 + 'em', backgroundColor: '#F2E750' }}>
-			<div className='row'>
+			<div className='row pe-auto'>
 				<div className='col-9'>
 					<h5 className='card-title display-6 fw-bold text-capitalize'>
 						{name}
