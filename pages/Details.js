@@ -19,9 +19,9 @@ export default function Details() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<Navbar title='Pokemon Detail' />
+			<Navbar />
 			<main className='align-items-center justify-content-center container py-4'>
-				<Header title='Pokemon' />
+				<Header title='Pokemon' subtitle='Pokemon Details' />
 
 				<CardBox picture={'/trash.svg'} />
 
@@ -29,7 +29,6 @@ export default function Details() {
 
 				<Pokeball />
 			</main>
-
 
 			<footer className={styles.footer}>
 				<a

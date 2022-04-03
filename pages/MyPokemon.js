@@ -7,8 +7,30 @@ import styles from '../styles/Home.module.css';
 import Navbar from '../components/Navbar';
 import { CardList } from '../components/Cards';
 import Pagination from '../components/Pagination';
+import Swal from 'sweetalert2';
 
 export default function MyPokemon() {
+	const deletePoke = () => {
+		Swal.fire({
+			title: 'Are you sure?',
+			text: 'You will not be able to recover this Pokemon!',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#d33',
+			cancelButtonColor: '#3085d6',
+			confirmButtonText: 'Release it!',
+			cancelButtonText: 'Cancel!',
+			reverseButtons: true,
+		}).then((result) => {
+			if (result.value) {
+				Swal.fire(
+					'Released!',
+					'Your Pokemon just ran away.',
+					'success'
+				);
+			}
+		});
+	};
 	return (
 		<>
 			<Head>
@@ -23,10 +45,12 @@ export default function MyPokemon() {
 			<Navbar title='My Pokemon' />
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title='My Pokemon List' />
+
 				<CardList
 					name='Pikachu'
 					type='Electric'
 					setName='Budi'
+					onClick={deletePoke}
 					box={
 						<Image
 							src='/trash.svg'
@@ -39,6 +63,7 @@ export default function MyPokemon() {
 					name='Raikou'
 					type='Electric'
 					setName='Rudy'
+					onClick={deletePoke}
 					box={
 						<Image
 							src='/trash.svg'
