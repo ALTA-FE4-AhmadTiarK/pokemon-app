@@ -1,15 +1,21 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import Header from '../components/Header';
-import styles from '../styles/Home.module.css';
+import Image from 'next/image';
 
 // Chosen Components:
 import Navbar from '../components/Navbar';
-import { CardList } from '../components/Cards';
 import Swal from 'sweetalert2';
 import Footer from '../components/Footer';
+import { useEffect, useState } from 'react';
+import { CardList } from '../components/Cards';
 
 export default function MyPokemon() {
+	const [poke, setPoke] = useState([]);
+
+	useEffect(() => {
+		setPoke(JSON.parse(localStorage.getItem('ownedPokemon')));
+	}, []);
+
 	const deletePoke = () => {
 		Swal.fire({
 			title: 'Are you sure?',
@@ -20,17 +26,10 @@ export default function MyPokemon() {
 			cancelButtonColor: '#3085d6',
 			confirmButtonText: 'Release it!',
 			cancelButtonText: 'Cancel!',
-			reverseButtons: true,
-		}).then((result) => {
-			if (result.value) {
-				Swal.fire(
-					'Released!',
-					'Your Pokemon just ran away.',
-					'success'
-				);
-			}
 		});
+		localStorage.removeItem('');
 	};
+
 	return (
 		<>
 			<Head>
@@ -45,6 +44,26 @@ export default function MyPokemon() {
 			<Navbar title='My Pokemon' />
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title='My Pokemon List' />
+
+				<div className=''>
+					{poke.map((pokemon, index) => {
+						return (
+							<CardList
+								key={index}
+								pokeName={pokemon.pokemon}
+								box={
+									<Image
+										src='/trash.svg'
+										alt='trash'
+										width={40}
+										height={40}
+										onClick={deletePoke}
+									/>
+								}
+							/>
+						);
+					})}
+				</div>
 			</main>
 
 			<Footer />

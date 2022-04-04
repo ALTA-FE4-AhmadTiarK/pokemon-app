@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Swal from 'sweetalert2';
 import axios from 'axios';
-import Link from 'next/link';
 
 const CardList = ({ pokeName, setName, box, onClick }) => {
 	const [typePokemon, setTypePokemon] = useState([]);
@@ -114,59 +112,4 @@ const CardStats = ({ stat }) => {
 	);
 };
 
-function Gacha(rate) {
-	const random = Math.floor(Math.random() * 100);
-	if (random <= rate) {
-		Swal.fire({
-			title: 'Congratulations!',
-			text: 'You got a pokemon!',
-			icon: 'success',
-			confirmButtonText: 'Cool',
-		}).then(() => {
-			Swal.fire({
-				title: 'Give it a name',
-				input: 'text',
-				// }).finally(()=>{
-				// send name to LocalStorage
-				// add to My Pokemon with name
-			});
-		});
-		// fetch('/api/pokemon', {})
-		// then provide a name
-	} else {
-		Swal.fire({
-			title: 'Oops...',
-			text: 'You missed!',
-			icon: 'error',
-			confirmButtonText: 'Cool',
-		});
-	}
-}
-
-const Pokeball = () => {
-	return (
-		<div className='text-center my-5'>
-			<a href='#'>
-				<Image
-					src='/pokeball.svg'
-					alt='Pokeball'
-					width={80}
-					height={80}
-					onClick={() => {
-						Gacha(50);
-					}}
-				/>
-				<p
-					className='rounded-pill border mx-auto w-50 my-4 text-white fw-bold'
-					onClick={() => {
-						Gacha(50);
-					}}
-					style={{ backgroundColor: '#F25430' }}>
-					Catch <br /> Pokemon
-				</p>
-			</a>
-		</div>
-	);
-};
-
-export { CardList, CardBox, CardMoves, CardStats, Pokeball };
+export { CardList, CardBox, CardMoves, CardStats };
