@@ -27,7 +27,8 @@ export default function MyPokemon() {
 			confirmButtonText: 'Release it!',
 			cancelButtonText: 'Cancel!',
 		});
-		localStorage.removeItem('');
+		localStorage.removeItem('ownedPokemon');
+		
 	};
 
 	return (
@@ -44,6 +45,7 @@ export default function MyPokemon() {
 			<Navbar title='My Pokemon' />
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title='My Pokemon List' />
+
 
 				<div className=''>
 					{poke.map((pokemon, index) => {

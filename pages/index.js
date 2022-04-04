@@ -86,7 +86,7 @@ export default function ListPokemon({ pokemon, index }) {
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title={'List of Pokemon'} />
 				{tempPokemon.map((item) => (
-					<Link key={item.id} href={`/detail/${item.name}`}>
+					<Link key={item.id} href={`/detail/${item.name}`} passHref>
 						<div className='row'>
 							<CardList pokeName={item.name} box='0' />
 						</div>

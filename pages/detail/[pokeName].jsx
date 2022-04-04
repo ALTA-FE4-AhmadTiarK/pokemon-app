@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import { CardBox, CardMoves, CardStats } from '../../components/Cards';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import MyLink from '../../components/Link';
 import Navbar from '../../components/Navbar';
 
 export async function getServerSideProps(context) {
