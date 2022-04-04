@@ -19,13 +19,6 @@ export default function Dropdown() {
 					<Menu.Items className='d-flex flex-column text-end float-end'>
 						<Menu.Item>
 							{({ active }) => (
-								<MyLink href='/'>
-									<div className=' h5 p-2 fw-bold'>Home</div>
-								</MyLink>
-							)}
-						</Menu.Item>
-						<Menu.Item>
-							{({ active }) => (
 								<MyLink href='/ListPokemon'>
 									<div className=' h5 p-2 fw-bold'>
 										List Pokemon
@@ -33,15 +26,7 @@ export default function Dropdown() {
 								</MyLink>
 							)}
 						</Menu.Item>
-						<Menu.Item>
-							{({ active }) => (
-								<MyLink href='/Details'>
-									<div className=' h5 p-2 fw-bold'>
-										Pokemon Details
-									</div>
-								</MyLink>
-							)}
-						</Menu.Item>
+
 						<Menu.Item>
 							{({ active }) => (
 								<MyLink href='/MyPokemon'>
