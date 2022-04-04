@@ -1,15 +1,11 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-// Axios
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // Chosen Components:
 import { CardList } from '../components/Cards';
 import Navbar from '../components/Navbar';
-import Pagination from '../components/Pagination';
 import Link from 'next/link';
 import Header from '../components/Header';
-import MyLink from '../components/Link';
-import axios from 'axios';
+import Footer from '../components/Footer';
 
 export async function getServerSideProps() {
 	const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
@@ -25,6 +21,7 @@ export async function getServerSideProps() {
 export default function ListPokemon({ pokemon, index }) {
 	const [tempPokemon, setTempPokemon] = useState(pokemon);
 	const [tempIndex, setTempIndex] = useState(index);
+
 	const nextPage = async () => {
 		if (tempIndex == 0) {
 			const res = await fetch(
@@ -49,6 +46,7 @@ export default function ListPokemon({ pokemon, index }) {
 			setTempIndex(nextIndex);
 		}
 	};
+
 	const prevPage = async () => {
 		if (tempIndex == 20) {
 			const res = await fetch(
@@ -73,6 +71,7 @@ export default function ListPokemon({ pokemon, index }) {
 			setTempIndex(prevIndex);
 		}
 	};
+
 	return (
 		<>
 			<Head>
@@ -87,20 +86,42 @@ export default function ListPokemon({ pokemon, index }) {
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title={'List of Pokemon'} />
 				{tempPokemon.map((item) => (
-					<div key={item.id} className='row'>
-						{/* <MyLink href={`/Details/${item.id}`}> */}
-						<CardList name={item.name} />
-						{/* </MyLink> */}
-					</div>
+					<Link key={item.id} href={`/detail/${item.name}`}>
+						<div className='row'>
+							<CardList pokeName={item.name} />
+						</div>
+					</Link>
 				))}
 
-				<button onClick={prevPage}>PREV</button>
-				<button onClick={nextPage}>NEXT</button>
+				<nav className='mt-5'>
+					<ul className='pagination justify-content-center fw-bold'>
+						<li className='page-item'>
+							<button
+								className='page-link text-uppercase'
+								onClick={prevPage}>
+								Prev
+							</button>
+						</li>
+						<li className='page-item disabled'>
+							<a
+								href='#'
+								className='page-link text-uppercase text-muted'>
+								Page
+							</a>
+						</li>
+						<li className='page-item'>
+							<button
+								type='button'
+								className='page-link text-uppercase fw-bold'
+								onClick={nextPage}>
+								Next
+							</button>
+						</li>
+					</ul>
+				</nav>
 			</main>
 
-			<footer className={styles.footer}>
-				<h6 className='fw-bold'>Created by Ahmad Tiar K.</h6>
-			</footer>
+			<Footer />
 		</>
 	);
 }

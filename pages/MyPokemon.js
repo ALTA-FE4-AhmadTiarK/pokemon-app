@@ -6,8 +6,8 @@ import styles from '../styles/Home.module.css';
 // Chosen Components:
 import Navbar from '../components/Navbar';
 import { CardList } from '../components/Cards';
-import Pagination from '../components/Pagination';
 import Swal from 'sweetalert2';
+import Footer from '../components/Footer';
 
 export default function MyPokemon() {
 	const deletePoke = () => {
@@ -45,53 +45,9 @@ export default function MyPokemon() {
 			<Navbar title='My Pokemon' />
 			<main className='align-items-center justify-content-center container py-4'>
 				<Header title='My Pokemon List' />
-
-				<CardList
-					name='Pikachu'
-					type='Electric'
-					setName='Budi'
-					onClick={deletePoke}
-					box={
-						<Image
-							src='/trash.svg'
-							alt='trash'
-							width={30}
-							height={30}></Image>
-					}
-				/>
-				<CardList
-					name='Raikou'
-					type='Electric'
-					setName='Rudy'
-					onClick={deletePoke}
-					box={
-						<Image
-							src='/trash.svg'
-							alt='trash'
-							width={30}
-							height={30}></Image>
-					}
-				/>
-
-				<Pagination />
 			</main>
 
-			<footer className={styles.footer}>
-				<a
-					href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-					target='_blank'
-					rel='noopener noreferrer'>
-					Powered by{' '}
-					<span className={styles.logo}>
-						<Image
-							src='/vercel.svg'
-							alt='Vercel Logo'
-							width={72}
-							height={16}
-						/>
-					</span>
-				</a>
-			</footer>
+			<Footer />
 		</>
 	);
 }

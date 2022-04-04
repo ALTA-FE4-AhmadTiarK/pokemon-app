@@ -31,7 +31,7 @@ export default function Home() {
 					<h2 className='text-white'>Mini Games</h2>
 
 					<a href='#'>
-						<div className='border border-5 rounded-pill p-2 my-3'>
+						<div className='border border-5 rounded-pill p-2 fw-bold text-white text-uppercase my-3'>
 							<Link href='/ListPokemon'>Game Start</Link>
 						</div>
 					</a>
